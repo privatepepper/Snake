@@ -239,6 +239,7 @@ DIST          = /Users/L/Qt/5.14.2/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf \
+		../Snake_Game_window/.qmake.stash \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf \
@@ -473,6 +474,7 @@ Makefile: ../Snake_Game_window/Snake_Game_window.pro /Users/L/Qt/5.14.2/clang_64
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/L/Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf \
@@ -686,6 +688,7 @@ Makefile: ../Snake_Game_window/Snake_Game_window.pro /Users/L/Qt/5.14.2/clang_64
 /Users/L/Qt/5.14.2/clang_64/mkspecs/features/qt_config.prf:
 /Users/L/Qt/5.14.2/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/L/Qt/5.14.2/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/L/Qt/5.14.2/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/L/Qt/5.14.2/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/L/Qt/5.14.2/clang_64/mkspecs/features/toolchain.prf:
@@ -760,6 +763,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r Snake_Game_window.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -1206,6 +1210,7 @@ moc_widget.cpp: ../Snake_Game_window/widget.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Snake_Game_window/snake_logic.h \
 		moc_predefs.h \
 		/Users/L/Qt/5.14.2/clang_64/bin/moc
 	/Users/L/Qt/5.14.2/clang_64/bin/moc $(DEFINES) --include /Users/L/Documents/C++/Projects/Snake/build-Snake_Game_window-Desktop_Qt_5_14_2_clang_64bit-Debug/moc_predefs.h -I/Users/L/Qt/5.14.2/clang_64/mkspecs/macx-clang -I/Users/L/Documents/C++/Projects/Snake/Snake_Game_window -I/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/L/Qt/5.14.2/clang_64/lib/QtGui.framework/Headers -I/Users/L/Qt/5.14.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/11.0.3/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/L/Qt/5.14.2/clang_64/lib ../Snake_Game_window/widget.h -o moc_widget.cpp
@@ -1652,6 +1657,7 @@ main.o: ../Snake_Game_window/main.cpp ../Snake_Game_window/widget.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Snake_Game_window/snake_logic.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/QApplication
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../Snake_Game_window/main.cpp
 
@@ -2494,6 +2500,7 @@ widget.o: ../Snake_Game_window/widget.cpp ../Snake_Game_window/widget.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwidgetaction.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qwizard.h \
 		/Users/L/Qt/5.14.2/clang_64/lib/QtWidgets.framework/Headers/qtwidgetsversion.h \
+		../Snake_Game_window/snake_logic.h \
 		ui_widget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o ../Snake_Game_window/widget.cpp
 

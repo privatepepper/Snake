@@ -25,17 +25,20 @@ public:
 
 private:
 
-    int direction = 1;
+    int direction = 2;
     const int north_direction = 0;
     const int south_direction = 3;
     const int west_direction = 1;
     const int east_direction = 2;
 
+    // snake
     int snake_head_y = board_height / 2;
     int snake_head_x = board_width / 2;
 
-   // int fruit_y;
-   // int fruit_x;
+    // fruit
+    void set_fruit_random_pos();
+    int fruit_y = 0;
+    int fruit_x = 0;
 
 };
 

@@ -69,10 +69,13 @@ void Widget::update_rectangles()
         for (int x = 0; x < inner_rectangles_width; x++){
             if (snake.board[y][x] == 1){
                 inner_rectangles[y][x]->setBrush(QColor(131, 183, 153));
-            } else {
+            }
+            if (snake.board[y][x] == 0){
                 inner_rectangles[y][x]->setBrush(QColor(39, 35, 36));
             }
-
+            if (snake.board[y][x] == -1){
+                inner_rectangles[y][x]->setBrush(Qt::red);
+            }
         }
     }
 
@@ -83,7 +86,7 @@ void Widget::update_rectangles()
 
 void Widget::on_PlayButton_clicked()
 {
-    timer->start(50);
+    timer->start(80);
     // time overtime increases!!!
 }
 

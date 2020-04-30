@@ -11,12 +11,13 @@ class Snake_Logic
 public:
     Snake_Logic();
 
-    int board_width = 80;
-    int board_height = 60;
+    int board_width = 20;
+    int board_height = 15;
 
     // moving logic
     void change_direction(int x);
-    void move();
+    void move_head();
+    void move_body();
 
     // board
     void intialize_board();
@@ -34,11 +35,15 @@ private:
     // snake
     int snake_head_y = board_height / 2;
     int snake_head_x = board_width / 2;
+    int snake_lenght = 1;
+    QVector < QPair <int, int> > whole_snake;
+    void check_collision();
 
     // fruit
     void set_fruit_random_pos();
     int fruit_y = 0;
     int fruit_x = 0;
+    int fruit_count = 0;
 
 };
 

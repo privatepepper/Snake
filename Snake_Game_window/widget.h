@@ -25,6 +25,8 @@ private:
 
     Snake_Logic snake;
 
+    bool game_is_not_lost = true;
+
     QTimer *timer;
 
     int inner_rectangles_width = snake.board_width;
@@ -34,21 +36,24 @@ private:
     int inner_rectangle_height = 600 / inner_rectangles_height;
 
     QGraphicsScene *scene;
+    void initialize_scene();
+
     QGraphicsRectItem *rect;
 
     QVector < QVector < QGraphicsRectItem* > > inner_rectangles;
     void reset_rectangles();
     void initialize_rectangles();
 
-    QVector <QPair <int,int> > snake_coordinates;
+
 
 
 private slots:
 
     void update_rectangles();
+
     void on_PlayButton_clicked();
     void on_StopButton_clicked();
-
+    void on_ResetButton_clicked();
 
 protected:
     void keyPressEvent(QKeyEvent *event);

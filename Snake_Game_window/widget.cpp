@@ -8,9 +8,7 @@ Widget::Widget(QWidget *parent)
 {
     ui->setupUi(this);
 
-
-
-
+    this->setFocusPolicy(Qt::StrongFocus);
 
     scene = new QGraphicsScene(this);
     ui->graphicsView->setScene(scene);
@@ -18,14 +16,7 @@ Widget::Widget(QWidget *parent)
     this->setStyleSheet("background-color: rgb(39, 35, 36) ");
     scene->setBackgroundBrush(QColor(39, 35, 36));
 
-    rect = new QGraphicsRectItem(0, 0,800, 600);
-    scene->addItem(rect);
-
-    QPen rect_borders = QPen(Qt::black);
-    rect_borders.setWidth(5);
-    rect->setPen(rect_borders);
-
-    initialize_rectangles();
+    initialize_scene();
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update_rectangles()));
@@ -37,10 +28,22 @@ Widget::~Widget()
     delete ui;
 }
 
+void Widget::initialize_scene()
+{
+    rect = new QGraphicsRectItem(0, 0,800, 600);
+    scene->addItem(rect);
+
+    QPen rect_borders = QPen(Qt::black);
+    rect_borders.setWidth(5);
+    rect->setPen(rect_borders);
+
+    initialize_rectangles();
+}
+
 void Widget::reset_rectangles()
 {
     snake.intialize_board();
-
+    inner_rectangles.clear();
     inner_rectangles.resize(inner_rectangles_width * inner_rectangles_height);
     for (int y = 0; y < inner_rectangles_height; y++){
         QGraphicsRectItem *nothing;
@@ -66,28 +69,54 @@ void Widget::initialize_rectangles()
 void Widget::update_rectangles()
 {
     for (int y = 0; y < inner_rectangles_height; y++){
-        for (int x = 0; x < inner_rectangles_width; x++){
-            if (snake.board[y][x] == 1){
-                inner_rectangles[y][x]->setBrush(QColor(131, 183, 153));
-            }
-            if (snake.board[y][x] == 0){
-                inner_rectangles[y][x]->setBrush(QColor(39, 35, 36));
-            }
-            if (snake.board[y][x] == -1){
-                inner_rectangles[y][x]->setBrush(Qt::red);
+        if (game_is_not_lost){
+
+            for (int x = 0; x < inner_rectangles_width; x++){
+
+                // collision
+                if (snake.board[y][x] == -99){
+                    QMessageBox::about(this, "t", "You lost!!!!");
+                    game_is_not_lost = false;
+                    break;
+                }
+
+                // body
+                if (snake.board[y][x] == 1){
+                    inner_rectangles[y][x]->setBrush(QColor(131, 183, 153));
+                }
+
+                // empty
+                if (snake.board[y][x] == 0){
+                    inner_rectangles[y][x]->setBrush(QColor(39, 35, 36));
+                }
+
+                // fruit
+                if (snake.board[y][x] == -1){
+                    inner_rectangles[y][x]->setBrush(QColor(232, 111, 104));
+                }
+
+                // head
+                if (snake.board[y][x] == 5){
+                    inner_rectangles[y][x]->setBrush(QColor(226, 205, 109));
+                }
+
             }
         }
     }
 
-    snake.move();
+    if (game_is_not_lost){
 
+        snake.move_head();
+        snake.move_body();
+
+    } else
+        on_ResetButton_clicked();
 }
 
 
 void Widget::on_PlayButton_clicked()
 {
-    timer->start(80);
-    // time overtime increases!!!
+    timer->start(180);
 }
 
 void Widget::on_StopButton_clicked()
@@ -114,5 +143,15 @@ void Widget::keyPressEvent(QKeyEvent *event)
             snake.change_direction(2);
             break;
     }
+
+}
+
+void Widget::on_ResetButton_clicked()
+{
+    game_is_not_lost = true;
+    scene->clear();
+    timer->stop();
+    initialize_scene();
+    snake.change_direction(2);
 
 }

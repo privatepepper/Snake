@@ -27,6 +27,7 @@ public:
     QGraphicsView *graphicsView;
     QHBoxLayout *horizontalLayout;
     QPushButton *PlayButton;
+    QPushButton *ResetButton;
     QPushButton *StopButton;
 
     void setupUi(QWidget *Widget)
@@ -50,6 +51,11 @@ public:
 
         horizontalLayout->addWidget(PlayButton);
 
+        ResetButton = new QPushButton(Widget);
+        ResetButton->setObjectName(QString::fromUtf8("ResetButton"));
+
+        horizontalLayout->addWidget(ResetButton);
+
         StopButton = new QPushButton(Widget);
         StopButton->setObjectName(QString::fromUtf8("StopButton"));
 
@@ -71,6 +77,7 @@ public:
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
         PlayButton->setText(QCoreApplication::translate("Widget", "Play", nullptr));
+        ResetButton->setText(QCoreApplication::translate("Widget", "Reset", nullptr));
         StopButton->setText(QCoreApplication::translate("Widget", "Stop", nullptr));
     } // retranslateUi
 

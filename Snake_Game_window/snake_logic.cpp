@@ -76,7 +76,7 @@ void Snake_Logic::move_head()
         whole_snake.push_back({whole_snake[element].first, whole_snake[element].second});
     }
 
-    //check_collision(direction);
+    check_collision(direction);
 
     // if snake size is at least = 2, delete current snake squares, and update to the new ones
     if (whole_snake.size() > 1){
@@ -146,9 +146,40 @@ void Snake_Logic::move_head()
 
 void Snake_Logic::check_collision(int Direction)
 {
-    for (int i = 1; i < whole_snake.size(); i++){
-        if (head_y == whole_snake[i].first && head_x == whole_snake[i].second){
-            board[0][0] = -99;
+
+    // left
+    if (Direction == west_direction){
+        for (int i = 1; i < whole_snake.size(); i++){
+            if (head_x - 1 == whole_snake[i].second && head_y == whole_snake[i].first){
+                board[0][0] = -99;
+            }
+        }
+    }
+
+    // right
+    if (Direction == east_direction){
+        for (int i = 1; i < whole_snake.size(); i++){
+            if (head_x + 1 == whole_snake[i].second && head_y == whole_snake[i].first){
+                board[0][0] = -99;
+            }
+        }
+    }
+
+    // up
+    if (Direction == north_direction){
+        for (int i = 1; i < whole_snake.size(); i++){
+            if (head_x  == whole_snake[i].second && head_y - 1 == whole_snake[i].first){
+                board[0][0] = -99;
+            }
+        }
+    }
+
+    // down
+    if (Direction == south_direction){
+        for (int i = 1; i < whole_snake.size(); i++){
+            if (head_x == whole_snake[i].second && head_y + 1 == whole_snake[i].first){
+                board[0][0] = -99;
+            }
         }
     }
 }

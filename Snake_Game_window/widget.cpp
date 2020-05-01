@@ -109,7 +109,6 @@ void Widget::update_rectangles()
     if (game_is_not_lost){
 
         snake.move_head();
-       // snake.move_body(); ?????????
 
     } else
         on_ResetButton_clicked();
@@ -118,7 +117,7 @@ void Widget::update_rectangles()
 
 void Widget::on_PlayButton_clicked()
 {
-    timer->start(180);
+    timer->start(100);
 }
 
 void Widget::on_StopButton_clicked()

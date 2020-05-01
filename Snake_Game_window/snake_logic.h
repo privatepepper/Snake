@@ -11,6 +11,8 @@ class Snake_Logic
 public:
     Snake_Logic();
 
+    int direction = 2;
+
     int board_width = 20;
     int board_height = 15;
 
@@ -28,7 +30,6 @@ public:
 
 private:
 
-    int direction = 2;
     const int north_direction = 0;
     const int south_direction = 3;
     const int west_direction = 1;

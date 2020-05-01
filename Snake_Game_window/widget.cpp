@@ -117,7 +117,7 @@ void Widget::update_rectangles()
 
 void Widget::on_PlayButton_clicked()
 {
-    timer->start(100);
+    timer->start(120);
 }
 
 void Widget::on_StopButton_clicked()
@@ -128,20 +128,25 @@ void Widget::on_StopButton_clicked()
 void Widget::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key()) {
-        case Qt::Key_W:
-            snake.change_direction(0);
+
+        case Qt::Key_W: case Qt::Key_K:
+            if (snake.direction != 3)
+                snake.change_direction(0);
             break;
 
-        case Qt::Key_S:
-            snake.change_direction(3);
+        case Qt::Key_S: case Qt::Key_J:
+            if (snake.direction != 0)
+                snake.change_direction(3);
             break;
 
-        case Qt::Key_A:
-            snake.change_direction(1);
+        case Qt::Key_A: case Qt::Key_H:
+            if (snake.direction != 2)
+                snake.change_direction(1);
             break;
 
-        case Qt::Key_D:
-            snake.change_direction(2);
+        case Qt::Key_D: case Qt::Key_L:
+            if (snake.direction != 1)
+                snake.change_direction(2);
             break;
     }
 

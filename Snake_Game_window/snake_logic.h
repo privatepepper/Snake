@@ -23,6 +23,8 @@ public:
     void intialize_board();
     QVector < QVector < int > > board;
 
+    // for tests
+    int fruit_count = 0;
 
 private:
 
@@ -37,13 +39,12 @@ private:
     int snake_head_x = board_width / 2;
     int snake_lenght = 1;
     QVector < QPair <int, int> > whole_snake;
-    void check_collision();
+    void check_collision(int x);
 
     // fruit
     void set_fruit_random_pos();
     int fruit_y = 0;
     int fruit_x = 0;
-    int fruit_count = 0;
 
 };
 

@@ -11,6 +11,7 @@ Snake_Logic::Snake_Logic()
 
 void Snake_Logic::intialize_board()
 {
+
     snake_lenght = 1;
 
     whole_snake.clear();
@@ -34,11 +35,11 @@ void Snake_Logic::intialize_board()
 void Snake_Logic::set_fruit_random_pos()
 {
     board[fruit_y][fruit_x] = 0;
-    fruit_y = (qrand() % board_height - 1) + 0;
-    fruit_x = (qrand() % board_width - 1) + 0;
+    fruit_y = (qrand() % (board_height)) + 0;
+    fruit_x = (qrand() % (board_width)) + 0;
     while (board[fruit_y][fruit_x] != 0){
-        fruit_y = (qrand() % board_height - 1) + 0;
-        fruit_x = (qrand() % board_width - 1) + 0;
+        fruit_y = (qrand() % (board_height)) + 0;
+        fruit_x = (qrand() % (board_width)) + 0;
     }
     board[fruit_y][fruit_x] = -1;
     fruit_count++;
@@ -64,14 +65,20 @@ void Snake_Logic::change_direction(int x)
 
 void Snake_Logic::move_head()
 {
+
+
     // delete current head position
     board[head_y][head_x] = 0;
 
+    // if, snake ate fruit, add new square for memorization
     if (whole_snake.size() == snake_lenght - 1){
         int element = whole_snake.size() - 1;
         whole_snake.push_back({whole_snake[element].first, whole_snake[element].second});
     }
 
+    //check_collision(direction);
+
+    // if snake size is at least = 2, delete current snake squares, and update to the new ones
     if (whole_snake.size() > 1){
         for (int i = whole_snake.size() - 1; i > 0; i--){
             board[whole_snake[i].first][whole_snake[i].second] = 0;
@@ -124,6 +131,7 @@ void Snake_Logic::move_head()
 
     }
 
+    move_body();
 
     // if snake eats the fruit, niam niam:),  renew fruit coordinates
     if (head_y == fruit_y && head_x == fruit_x){
@@ -134,13 +142,9 @@ void Snake_Logic::move_head()
     // update snake head position
     board[head_y][head_x] = head;
 
-    check_collision();
-
-
-
 }
 
-void Snake_Logic::check_collision()
+void Snake_Logic::check_collision(int Direction)
 {
     for (int i = 1; i < whole_snake.size(); i++){
         if (head_y == whole_snake[i].first && head_x == whole_snake[i].second){
@@ -157,7 +161,4 @@ void Snake_Logic::move_body()
         }
     }
 }
-
-//qDebug() << "head y = " + QString::number(head_y) + ", head x = " + QString::number(head_x) + ",  fruit = (" + QString::number(fruit_y) + ", " + QString::number(fruit_x) + ")" + " = " + QString::number(fruit_count);
-
 

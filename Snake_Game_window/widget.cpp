@@ -80,6 +80,11 @@ void Widget::update_rectangles()
                     break;
                 }
 
+                // fruit
+                if (snake.board[y][x] == -1){
+                    inner_rectangles[y][x]->setBrush(QColor(232, 111, 104));
+                }
+
                 // body
                 if (snake.board[y][x] == 1){
                     inner_rectangles[y][x]->setBrush(QColor(131, 183, 153));
@@ -90,10 +95,7 @@ void Widget::update_rectangles()
                     inner_rectangles[y][x]->setBrush(QColor(39, 35, 36));
                 }
 
-                // fruit
-                if (snake.board[y][x] == -1){
-                    inner_rectangles[y][x]->setBrush(QColor(232, 111, 104));
-                }
+
 
                 // head
                 if (snake.board[y][x] == 5){
@@ -107,7 +109,7 @@ void Widget::update_rectangles()
     if (game_is_not_lost){
 
         snake.move_head();
-        snake.move_body();
+       // snake.move_body(); ?????????
 
     } else
         on_ResetButton_clicked();
@@ -148,6 +150,7 @@ void Widget::keyPressEvent(QKeyEvent *event)
 
 void Widget::on_ResetButton_clicked()
 {
+    snake.fruit_count = 0;
     game_is_not_lost = true;
     scene->clear();
     timer->stop();
